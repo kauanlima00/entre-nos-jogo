@@ -3,128 +3,223 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#241820">
-<title>Entre Nós | Um jogo para dois</title>
+<title>Entre Nós — Uma experiência para dois</title>
 <style>
-:root{--bg:#241820;--card:#fff7f0;--wine:#873c56;--gold:#d9b77b;--muted:#d8c4ca}
+:root{--bg:#21171d;--panel:#30222b;--wine:#864258;--gold:#d8bb83;--cream:#fff7ef;--ink:#402934;--muted:#d4c1c8}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--card);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-main{max-width:560px;margin:auto;padding:26px 20px 40px}
-header{text-align:center;padding:22px 0}
-.logo{font-size:12px;letter-spacing:5px;color:var(--gold)}
-h1{font-family:Georgia,serif;font-size:43px;font-weight:400;margin:12px 0}
-header p{color:var(--muted);line-height:1.6}
-.pill{display:inline-block;border:1px solid #73505d;border-radius:30px;padding:8px 13px;font-size:12px;color:var(--gold)}
-h2{font-size:17px;font-weight:500;margin:25px 0 12px}
-.categories{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.cat{border:1px solid #63434f;background:#34232d;color:white;border-radius:13px;padding:15px 9px;text-align:left;font-size:14px;cursor:pointer}
-.cat.active{background:var(--wine);border-color:var(--gold)}
-.cat span{display:block;font-size:21px;margin-bottom:8px}
-.card{background:var(--card);color:#402531;border-radius:22px;padding:30px 22px;margin-top:18px;min-height:290px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 12px 35px #0003}
-.card small{color:var(--wine);letter-spacing:2px;font-weight:700}
-.heart{font-size:30px;margin:18px 0}
-#question{font-family:Georgia,serif;font-size:27px;line-height:1.35;margin:0}
-#hint{font-size:14px;line-height:1.6;color:#795d66;margin:15px 0 0}
-.actions{display:grid;gap:10px;margin-top:15px}
-button{font:inherit}
-.primary{background:var(--wine);color:white;border:0;border-radius:13px;padding:16px;font-weight:600;cursor:pointer}
-.secondary{background:transparent;border:1px solid #73505d;color:var(--muted);border-radius:13px;padding:13px;cursor:pointer}
-.progress{text-align:center;color:var(--muted);font-size:12px;margin-top:15px}
-footer{text-align:center;color:#bda5ae;font-size:12px;line-height:1.7;margin-top:35px}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}
+main{max-width:520px;margin:auto;padding:22px 19px 42px}
+header{text-align:center;padding:24px 0 27px}
+.brand{font-size:10px;letter-spacing:4px;color:var(--gold)}
+h1,h2,.question{font-family:Georgia,"Times New Roman",serif;font-weight:400}
+h1{font-size:43px;margin:18px 0 12px}
+h2{font-size:31px;line-height:1.2;margin:14px 0}
+p{line-height:1.7}
+.muted{color:var(--muted)}
+.gold{color:var(--gold)}
+.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.panel{background:var(--panel);border:1px solid #503843;border-radius:20px;padding:20px;margin:13px 0}
+.hero{padding:20px 3px 28px}
+.hero p{max-width:360px;margin:12px auto 24px;color:var(--muted);font-size:15px}
+.heart{font-size:28px;color:var(--gold);margin:18px 0}
+.primary,.secondary{width:100%;border-radius:13px;padding:16px;border:0}
+.primary{background:var(--wine);color:white;font-weight:650}
+.secondary{background:transparent;border:1px solid #745461;color:var(--cream);margin-top:10px}
+.small{font-size:12px;color:var(--muted);text-align:center}
+.phase{display:flex;align-items:center;gap:13px}
+.phaseIcon{font-size:23px;width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#48313d}
+.phase h3{font-size:15px;margin:0 0 5px}
+.phase p{font-size:12px;color:var(--muted);margin:0}
+.phase.done{border-color:var(--gold)}
+.progressTrack{height:5px;border-radius:9px;background:#4a3741;overflow:hidden;margin:12px 0}
+.progressFill{height:100%;width:0;background:var(--gold);transition:width .25s}
+.topline{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted)}
+.card{background:var(--cream);color:var(--ink);border-radius:23px;padding:29px 23px;text-align:center;margin:20px 0 14px;min-height:285px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.card .eyebrow{color:var(--wine)}
+.question{font-size:27px;line-height:1.38;margin:14px 0}
+.hint{font-size:14px;color:#775d65;line-height:1.7}
+.actions{display:grid;gap:9px}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.nav button{padding:13px 8px}
+.hidden{display:none!important}
+.finalLetter{background:var(--cream);color:var(--ink);border-radius:18px;padding:24px;font-family:Georgia,serif;font-size:19px;line-height:1.8}
+footer{text-align:center;margin-top:32px;color:#b8a0aa;font-size:11px;line-height:1.8}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 </style>
 </head>
 <body>
 <main>
 <header>
-<div class="logo">UM MOMENTO SÓ DE VOCÊS</div>
-<h1>Entre Nós <span style="color:var(--gold)">♥</span></h1>
-<p>Menos rotina. Mais conversas, carinho<br>e descobertas a dois.</p>
-<div class="pill">JOGO GRATUITO DE DEMONSTRAÇÃO</div>
+<div class="brand">UM MOMENTO SÓ DE VOCÊS</div>
+<h1>Entre Nós <span class="gold">♥</span></h1>
+<div class="muted">Uma experiência para dois.</div>
 </header>
 
-<h2>Escolham o clima do momento</h2>
-<section class="categories" id="categories">
-<button class="cat active" data-cat="conexao"><span>♡</span>Conexão</button>
-<button class="cat" data-cat="quebra"><span>☀</span>Quebra-gelo</button>
-<button class="cat" data-cat="romance"><span>♥</span>Romance</button>
-<button class="cat" data-cat="desafio"><span>✦</span>Desafios a dois</button>
+<section id="home">
+<div class="hero">
+<div class="eyebrow">Uma pausa na rotina</div>
+<h2>Voltem a se encontrar.<br><span class="gold">De verdade.</span></h2>
+<p>Uma jornada para lembrar por que vocês se escolheram, ouvir o que existe no coração e criar uma lembrança que seja só de vocês.</p>
+<button class="primary" id="begin">Começar nossa experiência ♥</button>
+<p class="small">Sem competição. Sem respostas certas. Apenas vocês dois.</p>
+</div>
+<div class="eyebrow">A JORNADA DE VOCÊS</div>
+<div id="phaseList"></div>
+<div class="panel">
+<div class="gold">♡ Um combinado importante</div>
+<p class="muted" style="font-size:13px;margin-bottom:0">Escutem sem julgar. Vocês podem fazer pausas ou pular qualquer pergunta. O objetivo não é acertar, mas se conhecer melhor.</p>
+</div>
 </section>
 
-<section class="card" aria-live="polite">
-<small id="label">CARTA DE CONEXÃO</small>
+<section id="play" class="hidden">
+<div class="topline"><span id="phaseCount">FASE 1 DE 4</span><span id="cardCount">CARTA 1 DE 4</span></div>
+<div class="progressTrack"><div class="progressFill" id="bar"></div></div>
+<div class="eyebrow" id="phaseKicker">LEMBRAR</div>
+<h2 id="phaseTitle">Onde tudo começou</h2>
+<p class="muted" id="phaseIntro">Toda história guarda um começo especial.</p>
+<div class="card" aria-live="polite">
+<div class="eyebrow" id="cardLabel">UMA PERGUNTA PARA VOCÊS</div>
 <div class="heart">♡</div>
-<p id="question">Qual momento nosso você gostaria de reviver?</p>
-<p id="hint">Contem um ao outro por que essa lembrança é especial.</p>
-</section>
-<div class="actions">
-<button class="primary" id="next">Sortear próxima carta →</button>
-<button class="secondary" id="restart">Recomeçar categoria</button>
+<div class="question" id="question"></div>
+<p class="hint" id="hint"></p>
 </div>
-<p class="progress" id="progress">Carta 1 da categoria</p>
-<footer>Feito para aproximar, nunca para pressionar.<br>Qualquer pessoa pode pular uma pergunta.<br><br>ENTRE NÓS © 2026</footer>
+<div class="actions">
+<button class="primary" id="next">Continuar →</button>
+<div class="nav">
+<button class="secondary" id="back" style="margin:0">← Voltar</button>
+<button class="secondary" id="skip" style="margin:0">Pular pergunta</button>
+</div>
+</div>
+<p class="small" id="encouragement">Leiam com calma. Não precisam ter pressa.</p>
+</section>
+
+<section id="ending" class="hidden">
+<div class="hero">
+<div class="eyebrow">Vocês chegaram até aqui</div>
+<h2>O que é bonito merece ser cuidado.</h2>
+<p>Antes de terminar, tirem um instante para reconhecer o que viveram nesta jornada.</p>
+</div>
+<div class="finalLetter">
+<p>“Entre tantas coisas que a vida nos pede, que nunca falte tempo para olhar um para o outro e lembrar: eu estou aqui, e ainda escolho construir com você.”</p>
+</div>
+<div class="panel">
+<div class="eyebrow">O último ritual</div>
+<h2 style="font-size:25px">Uma promessa possível</h2>
+<p class="muted">Cada um complete esta frase em voz alta:</p>
+<p>“Nesta semana, quero demonstrar meu carinho por você quando eu…”</p>
+<p class="muted" style="font-size:13px">Escolham um gesto simples e realista. Pode ser ouvir com atenção, separar um tempo juntos ou agradecer por algo específico.</p>
+</div>
+<button class="primary" id="finish">Guardar esta experiência como concluída ♥</button>
+<button class="secondary" id="again">Viver novamente</button>
+<p class="small" id="savedMessage"></p>
+</section>
+
+<footer>ENTRE NÓS ♥<br>Um convite à conversa, ao carinho e à presença.<br>Respeitem o tempo e os limites um do outro.</footer>
 </main>
 
 <script>
-const decks={
-conexao:[
-["Qual momento nosso você gostaria de reviver?","Contem por que essa lembrança é especial."],
-["O que eu faço que faz você se sentir amado(a)?","Escutem a resposta sem interromper."],
-["Qual sonho você gostaria de realizar comigo?","Imaginem juntos o primeiro passo."],
-["Qual lembrança nossa sempre faz você sorrir?","Contem a história por trás dela."],
-["O que você gostaria que fizéssemos mais vezes juntos?","Escolham uma ideia para colocar em prática."],
-["Quando você se sente mais compreendido(a) por mim?","Conversem com carinho e sinceridade."]
-],
-quebra:[
-["Qual foi sua primeira impressão de mim?","Vale contar a verdade, mesmo que seja engraçada."],
-["Quem tomou a iniciativa primeiro?","Relembrem como tudo começou."],
-["Qual música lembra a nossa história?","Escolham uma música para ouvir juntos."],
-["Que mania minha faz você rir?","Aproveitem para rir juntos."],
-["Se nosso relacionamento fosse um filme, qual seria o título?","Inventem um título e expliquem a escolha."],
-["Qual foi nosso encontro mais inesperado?","Relembrem os detalhes."]
-],
-romance:[
-["Qual detalhe meu mais chama sua atenção?","Olhem um para o outro e respondam com sinceridade."],
-["Como seria nosso encontro perfeito?","Imaginem uma noite que combine com os dois."],
-["Qual gesto romântico nunca sai de moda para você?","Contem como gostariam de recebê-lo."],
-["O que fez você perceber que gostava de mim?","Compartilhem esse momento especial."],
-["Escolha três palavras para descrever nosso amor.","Depois expliquem cada palavra."],
-["Que pequena surpresa deixaria seu dia melhor?","Uma ideia simples também pode ser especial."]
-],
-desafio:[
-["Façam elogios um ao outro por 30 segundos.","Tentem não repetir nenhum elogio."],
-["Escolham uma música que represente vocês.","Ouçam juntos e contem o motivo."],
-["Planejem um encontro especial gastando pouco.","Cada um sugere uma ideia."],
-["Fiquem um minuto de mãos dadas sem olhar o celular.","Aproveitem a pausa juntos."],
-["Cada um diga uma coisa que admira no outro.","Escolham algo que nem sempre dizem em voz alta."],
-["Inventem uma tradição só de vocês.","Pode ser simples: uma música, passeio ou ritual."]
-]
-};
-const names={conexao:"CONEXÃO",quebra:"QUEBRA-GELO",romance:"ROMANCE",desafio:"DESAFIO A DOIS"};
-let category="conexao",index=0,order=[];
-const q=document.getElementById("question"),hint=document.getElementById("hint");
-function shuffle(){order=decks[category].map((_,i)=>i).sort(()=>Math.random()-.5);index=0;render()}
-function render(){
-const item=decks[category][order[index]];
-document.getElementById("label").textContent="CARTA DE "+names[category];
-q.textContent=item[0];hint.textContent=item[1];
-document.getElementById("progress").textContent="Carta "+(index+1)+" de "+order.length;
+const phases=[
+{
+name:"LEMBRAR",title:"Onde tudo começou",
+intro:"Antes de serem quem são hoje, vocês tiveram um primeiro capítulo.",
+icon:"♡",
+cards:[
+["Qual foi sua primeira impressão de mim?","Relembrem aquele momento. O que mudou desde então?"],
+["Qual lembrança nossa faz você sorrir imediatamente?","Contem a história como se o outro nunca a tivesse ouvido."],
+["Em que momento você percebeu que eu era especial?","Não precisa ser um grande acontecimento."],
+["Que pequeno detalhe do começo você ainda guarda no coração?","Uma palavra, um gesto, um lugar ou um olhar."]
+]},
+{
+name:"ENXERGAR",title:"O que existe por dentro",
+intro:"Às vezes, amar também é aprender a escutar de um jeito novo.",
+icon:"♡",
+cards:[
+["Que gesto meu faz você se sentir amado(a)?","Escutem a resposta sem tentar se defender ou explicar."],
+["Em quais momentos você sente que somos uma boa equipe?","Lembrem de algo concreto que viveram juntos."],
+["O que você gostaria que eu entendesse melhor sobre você?","Compartilhem somente o que se sentirem confortáveis para dizer."],
+["Qual coisa que faço você talvez não perceba o quanto significa para mim?","Agradeçam um ao outro pela sinceridade."]
+]},
+{
+name:"REVELAR",title:"Os sonhos que ainda moram aqui",
+intro:"Existe sempre algo novo para descobrir em quem está ao nosso lado.",
+icon:"✧",
+cards:[
+["Que sonho seu você gostaria de compartilhar mais comigo?","Conversem sem precisar resolver nada hoje."],
+["O que você gostaria que nunca faltasse na nossa relação?","Cada um pode dar sua própria resposta."],
+["Que experiência nova você gostaria de viver comigo?","Pode ser algo simples, perto de casa."],
+["Existe algo bonito que você sente e gostaria de dizer mais vezes?","Se for confortável, diga agora."]
+]},
+{
+name:"ESCOLHER",title:"Continuar escolhendo um ao outro",
+intro:"Uma relação é construída também nos pequenos momentos que ainda virão.",
+icon:"♥",
+cards:[
+["Qual qualidade minha você mais admira hoje?","Olhem um para o outro enquanto respondem, se quiserem."],
+["Qual pequeno gesto podemos fazer mais vezes nesta semana?","Escolham algo que seja possível para os dois."],
+["Como seria um encontro simples, mas inesquecível, para nós?","Imaginem juntos como poderiam realizá-lo."],
+["Complete: uma coisa que ainda quero viver com você é…","Deixem a resposta ser sincera, sem cobranças."]
+]}
+];
+const $=id=>document.getElementById(id);
+let phase=0,card=0,completed=[],seen={},finished=false;
+try{
+const s=JSON.parse(localStorage.getItem("entrenos-progress-v1")||"null");
+if(s&&Array.isArray(s.completed)){completed=s.completed.filter(n=>Number.isInteger(n)&&n>=0&&n<4);finished=!!s.finished}
+}catch(e){}
+function save(){
+try{localStorage.setItem("entrenos-progress-v1",JSON.stringify({completed:[...new Set(completed)],finished}))}catch(e){}
 }
-document.querySelectorAll(".cat").forEach(button=>{
-button.addEventListener("click",()=>{
-category=button.dataset.cat;
-document.querySelectorAll(".cat").forEach(b=>b.classList.toggle("active",b===button));
-shuffle();
+function renderPhases(){
+$("phaseList").innerHTML=phases.map((p,i)=>`
+<div class="panel phase ${completed.includes(i)?"done":""}">
+<div class="phaseIcon">${completed.includes(i)?"✓":p.icon}</div>
+<div><h3>Fase ${i+1} — ${p.name.charAt(0)+p.name.slice(1).toLowerCase()}</h3><p>${p.title}${completed.includes(i)?" · Concluída":""}</p></div>
+</div>`).join("");
+}
+function show(id){
+["home","play","ending"].forEach(s=>$(s).classList.toggle("hidden",s!==id));
+window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderCard(){
+const p=phases[phase],c=p.cards[card];
+$("phaseCount").textContent=`FASE ${phase+1} DE ${phases.length}`;
+$("cardCount").textContent=`CARTA ${card+1} DE ${p.cards.length}`;
+$("phaseKicker").textContent=p.name;
+$("phaseTitle").textContent=p.title;
+$("phaseIntro").textContent=p.intro;
+$("cardLabel").textContent=`FASE ${phase+1} · MOMENTO ${card+1}`;
+$("question").textContent=c[0];
+$("hint").textContent=c[1];
+$("bar").style.width=((phase*p.cards.length+card+1)/(phases.length*p.cards.length)*100)+"%";
+$("back").disabled=phase===0&&card===0;
+$("back").style.opacity=$("back").disabled?".4":"1";
+$("next").textContent=card===p.cards.length-1?(phase===phases.length-1?"Concluir jornada ♥":"Próxima fase →"):"Continuar →";
+}
+function start(){phase=0;card=0;show("play");renderCard()}
+function advance(){
+if(card<phases[phase].cards.length-1){card++;renderCard();return}
+completed=[...new Set([...completed,phase])];save();renderPhases();
+if(phase<phases.length-1){phase++;card=0;renderCard()}
+else{finished=true;save();show("ending")}
+}
+$("begin").addEventListener("click",start);
+$("next").addEventListener("click",advance);
+$("back").addEventListener("click",()=>{
+if(card>0)card--;
+else if(phase>0){phase--;card=phases[phase].cards.length-1}
+renderCard();
 });
+$("skip").addEventListener("click",advance);
+$("finish").addEventListener("click",()=>{
+finished=true;save();
+$("savedMessage").textContent="Experiência concluída neste navegador. Obrigado por compartilharem esse momento. ♥";
+renderPhases();
 });
-document.getElementById("next").addEventListener("click",()=>{
-if(index<order.length-1){index++;render()}
-else{shuffle();document.getElementById("next").textContent="Sortear novamente →"}
-});
-document.getElementById("restart").addEventListener("click",()=>{
-shuffle();document.getElementById("next").textContent="Sortear próxima carta →";
-});
-shuffle();
+$("again").addEventListener("click",start);
+renderPhases();
 </script>
 </body>
 </html>
