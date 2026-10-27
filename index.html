@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160b10">
+<meta name="description" content="Entre Nós — uma experiência premium para dois.">
+<title>Entre Nós — Uma experiência para dois</title>
+<style>
+:root{--bg:#10090d;--panel:#1c1017;--wine:#572237;--wine2:#7c304d;--gold:#d8b875;--gold2:#f0dca9;--cream:#fff7ed;--muted:#b9a7ad;--line:rgba(216,184,117,.24)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -15%,#3c1929,#160b10 48%,#0d080b);color:var(--cream);font-family:Georgia,"Times New Roman",serif;min-height:100vh}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
+.shell{max-width:1000px;margin:auto;padding:0 20px 35px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);font:13px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.brand-mark{border:1px solid var(--gold);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:20px Georgia;color:var(--gold)}
+.top-note,.eyebrow,.mode-label,.text-link,.card-kicker,.progress,.btn,.back,.quiet-btn{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.13em}
+.top-note{font-size:9px;color:var(--muted)}
+.hero{text-align:center;padding:45px 0 30px}
+.eyebrow{font-size:10px;color:var(--gold);letter-spacing:.25em;margin-bottom:17px}
+.hero h1{font-size:clamp(49px,10vw,84px);font-weight:400;letter-spacing:-.05em;line-height:.95;margin:0}
+.hero h1 span{display:block;color:var(--gold2);font-style:italic}
+.hero p{font:14px/1.8 Arial,sans-serif;color:var(--muted);max-width:460px;margin:22px auto}
+.ornament{color:var(--gold);margin:22px}
+.mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.mode-card{min-height:255px;padding:23px 19px;text-align:left;border:1px solid var(--line);border-radius:3px;color:var(--cream);background:linear-gradient(145deg,#4c1f31,#180d13 75%);transition:.2s}
+.mode-card:hover{transform:translateY(-3px);border-color:var(--gold)}
+.mode-card.dark{background:linear-gradient(145deg,#25131d,#0d080b)}
+.mode-card.hot{background:linear-gradient(145deg,#632039,#1b0b13);border-color:rgba(216,184,117,.48)}
+.mode-symbol{font-size:25px;color:var(--gold);margin-bottom:19px}
+.mode-label{font-size:9px;color:var(--gold);margin-bottom:10px}
+.mode-card h2{font-size:26px;font-weight:400;margin:0 0 11px}
+.mode-card p{font:12px/1.7 Arial,sans-serif;color:var(--muted);margin:0 0 20px}
+.text-link{font-size:9px;color:var(--gold2);border-bottom:1px solid var(--gold);padding-bottom:5px}
+.fineprint{text-align:center;font:11px/1.7 Arial,sans-serif;color:#95818a;max-width:680px;margin:22px auto}
+.age-note{text-align:center;font:10px Arial,sans-serif;color:#a99199;letter-spacing:.08em;margin-top:15px}
+.section{max-width:700px;margin:27px auto 0}
+.hidden{display:none!important}
+.game-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:17px}
+.back,.quiet-btn{border:1px solid var(--line);background:transparent;color:var(--gold2);padding:10px 12px;font-size:9px}
+.progress{font-size:9px;color:var(--muted);text-align:center}
+.category-row,.level-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--muted);padding:9px 12px;border-radius:30px;font:11px Arial,sans-serif}
+.chip.active{background:var(--wine);border-color:var(--gold);color:var(--gold2)}
+.level-title{font:10px Arial,sans-serif;letter-spacing:.18em;color:var(--gold);margin:18px 0 10px;text-transform:uppercase}
+.playing-card{position:relative;min-height:320px;border:1px solid rgba(216,184,117,.55);background:linear-gradient(145deg,#2a1520,#160d12 75%);padding:30px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.playing-card:before{content:"";position:absolute;inset:10px;border:1px solid rgba(216,184,117,.12);pointer-events:none}
+.card-kicker{font-size:10px;color:var(--gold);margin-bottom:24px}
+.card-quote{font-size:clamp(24px,5vw,35px);line-height:1.35;max-width:530px}
+.card-number{font:10px Arial,sans-serif;color:#9f818d;letter-spacing:.17em;margin-top:24px}
+.game-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:10px;margin-top:13px}
+.btn{padding:15px 14px;border:1px solid var(--gold);background:linear-gradient(135deg,#e4c987,#b9914f);color:#211016;font-size:10px;font-weight:bold}
+.btn.secondary{background:transparent;color:var(--gold2);border-color:var(--line)}
+.rules{text-align:center;font:11px/1.7 Arial,sans-serif;color:#9e8a92;margin:15px auto}
+.footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#7f6b73;font:9px Arial,sans-serif;letter-spacing:.08em}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#28151e;border:1px solid var(--gold);color:var(--gold2);padding:12px 16px;font:12px Arial,sans-serif;z-index:5}
+@media(max-width:700px){.mode-grid{grid-template-columns:1fr}.mode-card{min-height:auto;padding:22px}.mode-symbol{margin-bottom:12px}.mode-card p{max-width:400px}.hero{padding-top:35px}}
+@media(max-width:480px){.shell{padding:0 15px 28px}.topbar{padding:16px 0}.top-note{max-width:100px;text-align:right}.game-head{flex-wrap:wrap}.playing-card{min-height:290px;padding:24px 19px}.game-actions{grid-template-columns:1fr}.footer{justify-content:center;text-align:center}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+ <div class="brand"><span class="brand-mark">∞</span><span>Entre Nós</span></div>
+ <div class="top-note">Uma experiência para dois</div>
+</header>
+<main>
+<section id="home">
+ <div class="hero">
+  <div class="eyebrow">Presença · conexão · desejo</div>
+  <h1>Entre <span>Nós.</span></h1>
+  <p>Deixem o mundo lá fora. Uma pergunta, um gesto e um segredo de cada vez.</p>
+  <div class="ornament">✦</div>
+ </div>
+ <div class="mode-grid">
+  <button class="mode-card" onclick="startGame('romance')">
+   <div class="mode-symbol">✧</div><div class="mode-label">Modo I · conexão</div>
+   <h2>Romance</h2>
+   <p>Perguntas para aprofundar a intimidade emocional, recordar histórias e se aproximar de verdade.</p>
+   <span class="text-link">Começar a conexão ↗</span>
+  </button>
+  <button class="mode-card dark" onclick="startGame('tentacao')">
+   <div class="mode-symbol">♢</div><div class="mode-label">Modo II · adultos</div>
+   <h2>Tentação</h2>
+   <p>Provocações e desafios sensuais para explorar a química do casal com leveza e consentimento.</p>
+   <span class="text-link">Descobrir o desejo ↗</span>
+  </button>
+  <button class="mode-card hot" onclick="startGame('sem-limites')">
+   <div class="mode-symbol">♨</div><div class="mode-label">Modo III · 18+</div>
+   <h2>Sem Limites</h2>
+   <p>Desafios adultos mais intensos, confissões íntimas e provocações para casais que querem ousar.</p>
+   <span class="text-link">Entrar no modo 18+ ↗</span>
+  </button>
+ </div>
+ <p class="fineprint">Cada carta é um convite, nunca uma obrigação. Conversem, adaptem ou pulem qualquer desafio. Respeitem os limites um do outro.</p>
+ <div class="age-note">MODO TENTAÇÃO E SEM LIMITES DESTINADOS A ADULTOS (18+).</div>
+</section>
+
+<section id="game" class="section hidden">
+ <div class="game-head">
+  <button class="back" onclick="goHome()">← Início</button>
+  <div class="progress" id="progress">CARTA 01</div>
+  <button class="quiet-btn" onclick="shuffleDeck()">Embaralhar ↻</button>
+ </div>
+ <div id="levelWrap" class="hidden">
+  <div class="level-title">Escolha a intensidade</div>
+  <div class="level-row" id="levels"></div>
+ </div>
+ <div class="category-row" id="categories"></div>
+ <article class="playing-card" aria-live="polite">
+  <div class="card-kicker" id="cardKicker">MODO ROMANCE</div>
+  <div class="card-quote" id="cardText"></div>
+  <div class="card-number" id="cardNumber">ENTRE NÓS · 01</div>
+ </article>
+ <div class="game-actions">
+  <button class="btn secondary" onclick="skipCard()">Pular desafio</button>
+  <button class="btn" onclick="nextCard()">Próxima carta →</button>
+ </div>
+ <p class="rules" id="rules"></p>
+</section>
+</main>
+<footer class="footer"><span>ENTRE NÓS © <span id="year"></span></span><span>FEITO PARA ESTAR MAIS PERTO</span><span>VINHO · PRETO · DOURADO</span></footer>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+const decks={
+romance:[
+["Memórias","Qual lembrança nossa sempre faz você sorrir?"],
+["Memórias","Em que momento você percebeu que havia algo especial entre nós?"],
+["Memórias","Qual pequeno gesto meu faz você se sentir amado(a)?"],
+["Conexão","O que você gostaria que fizéssemos mais vezes juntos?"],
+["Conexão","Quando você se sente mais compreendido(a) por mim?"],
+["Conexão","Que assunto você gostaria que conversássemos com mais calma?"],
+["Sonhos","Se tivéssemos um dia perfeito só para nós, como seria?"],
+["Sonhos","Qual experiência nova você gostaria de viver comigo?"],
+["Sonhos","Que sonho seu eu poderia ajudar a realizar?"],
+["Carinho","Qual elogio meu ficou guardado na sua memória?"],
+["Carinho","O que posso fazer nos dias difíceis para apoiar você?"],
+["Carinho","Complete: eu me sinto mais perto de você quando…"],
+["Profundidade","O que você aprendeu sobre o amor desde que estamos juntos?"],
+["Profundidade","Existe algo que você gostaria que eu entendesse melhor sobre você?"],
+["Diversão","Qual seria o nome de um filme inspirado na nossa história?"],
+["Diversão","Que mania minha você acha adorável?"],
+["Carinho","Olhem-se nos olhos por 20 segundos e digam algo que admiram um no outro."]
+],
+tentacao:[
+["Olhares","Olhem-se nos olhos por 20 segundos. Quem desviar primeiro faz um elogio sincero."],
+["Provocação","Sussurre no ouvido da pessoa algo que você acha irresistível nela."],
+["Carinho","Pergunte qual tipo de carinho faz seu par se sentir mais desejado(a)."],
+["Provocação","Descreva um encontro a dois que seria inesquecível para você."],
+["Química","Escolha uma música e convide seu par para dançar por um minuto."],
+["Carinho","Dê um abraço demorado, se ambos quiserem, e aproveitem o momento."],
+["Confissões","Qual detalhe de personalidade deixa alguém ainda mais atraente para você?"],
+["Confissões","Conte uma ocasião em que sentiu muita química entre vocês."],
+["Provocação","Faça um elogio específico que normalmente pensa, mas nem sempre diz."],
+["Química","Cada um escolhe algo novo que gostaria de experimentar em um próximo encontro."],
+["Confissões","O que ajuda você a se sentir à vontade para expressar seus desejos?"],
+["Provocação","Se ambos quiserem, troquem um beijo ou escolham outra forma de carinho."],
+["Química","Inventem juntos um apelido secreto para um momento romântico."],
+["Confissões","Qual atitude faz você se sentir desejado(a) sem precisar de palavras?"],
+["Carinho","Perguntem um ao outro o que seria agradável e confortável neste momento."]
+],
+"sem-limites":[
+{n:1,c:"Aquecimento",t:"Olhem-se nos olhos e digam, alternadamente, o que acham mais atraente um no outro."},
+{n:1,c:"Aquecimento",t:"Cada um conta uma fantasia romântica ou sensual que gostaria de conversar com o parceiro."},
+{n:1,c:"Aquecimento",t:"Escolham uma música sedutora e dancem juntos durante uma música inteira."},
+{n:1,c:"Aquecimento",t:"Sussurre um elogio ousado no ouvido do seu par, se ele ou ela se sentir confortável."},
+{n:1,c:"Aquecimento",t:"Cada um descreve o encontro mais provocante que gostaria de viver com o outro."},
+{n:1,c:"Aquecimento",t:"Façam uma rodada de perguntas sobre desejos, curiosidades e limites, sem julgar as respostas."},
+{n:2,c:"Tentação intensa",t:"Pergunte ao seu par que tipo de beijo ele ou ela mais gosta e, se ambos quiserem, experimentem."},
+{n:2,c:"Tentação intensa",t:"Cada um escolhe uma região não íntima para receber uma massagem suave, respeitando a preferência do outro."},
+{n:2,c:"Tentação intensa",t:"Sussurrem um ao outro algo que gostariam de experimentar juntos e conversem sobre isso."},
+{n:2,c:"Tentação intensa",t:"Desafio: um minuto de beijos ou carícias escolhidos em conjunto. Qualquer pessoa pode pausar."},
+{n:2,c:"Tentação intensa",t:"Escolham uma forma de carinho que ambos desejam e dediquem um minuto a ela."},
+{n:2,c:"Tentação intensa",t:"Cada um compartilha uma coisa que aumenta sua sensação de intimidade e confiança."},
+{n:3,c:"Intimidade",t:"Conversem sobre uma fantasia consensual que teriam curiosidade de explorar, sem obrigação de realizá-la."},
+{n:3,c:"Intimidade",t:"Cada um diz uma coisa que gostaria de pedir durante um momento íntimo e uma forma de comunicar limites."},
+{n:3,c:"Intimidade",t:"Criem juntos um cenário romântico e sensual. Cada pessoa escolhe um detalhe e ambos decidem o que fica confortável."},
+{n:3,c:"Intimidade",t:"Escolham uma experiência íntima que ambos desejam e conversem sobre como torná-la confortável e segura."},
+{n:3,c:"Intimidade",t:"Cada um compartilha algo que gostaria de explorar mais na vida a dois, sem pressão para aceitar."},
+{n:3,c:"Intimidade",t:"Façam uma pausa para perguntar: o que você quer, o que prefere evitar e o que pode mudar de ideia a qualquer momento?"},
+{n:3,c:"Intimidade",t:"Planejem um momento a dois para depois do jogo, escolhendo juntos o que agrada a ambos."}
+]
+};
+let mode="romance",deck=[],index=0,category="Todas",level=1;
+const $=id=>document.getElementById(id);
+function startGame(which){
+ if((which==="tentacao"||which==="sem-limites")&&!sessionStorage.getItem("adultConfirmed")){
+  if(!confirm("Este modo é destinado a adultos com 18 anos ou mais. Você confirma que ambos são adultos e desejam jogar?"))return;
+  sessionStorage.setItem("adultConfirmed","1");
+ }
+ mode=which;category="Todas";level=1;index=0;deck=mode==="sem-limites"?[...decks[mode]]:decks[mode].map(x=>({c:x[0],t:x[1]}));
+ shuffleArray(deck);
+ $("home").classList.add("hidden");$("game").classList.remove("hidden");
+ $("levelWrap").classList.toggle("hidden",mode!=="sem-limites");
+ renderLevels();renderCategories();renderCard();window.scrollTo({top:0,behavior:"smooth"});
+}
+function goHome(){$("game").classList.add("hidden");$("home").classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"})}
+function shuffleArray(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
+function currentDeck(){let d=mode==="sem-limites"?deck.filter(x=>x.n===level):deck;return category==="Todas"?d:d.filter(x=>x.c===category)}
+function renderLevels(){
+ $("levels").innerHTML="";
+ ["Nível 1","Nível 2","Nível 3"].forEach((label,i)=>{let b=document.createElement("button");b.className="chip"+(level===i+1?" active":"");b.textContent=label;b.onclick=()=>{level=i+1;index=0;category="Todas";renderLevels();renderCategories();renderCard()};$("levels").appendChild(b)});
+}
+function renderCategories(){
+ let d=mode==="sem-limites"?deck.filter(x=>x.n===level):deck;
+ let cats=["Todas",...new Set(d.map(x=>x.c))];$("categories").innerHTML="";
+ cats.forEach(c=>{let b=document.createElement("button");b.className="chip"+(c===category?" active":"");b.textContent=c;b.onclick=()=>{category=c;index=0;renderCategories();renderCard()};$("categories").appendChild(b)});
+}
+function renderCard(){
+ let d=currentDeck();if(!d.length){$("cardText").textContent="Não há cartas nesta categoria.";return}
+ if(index>=d.length)index=0;
+ let card=d[index];
+ $("cardKicker").textContent=(mode==="romance"?"MODO ROMANCE":mode==="tentacao"?"MODO TENTAÇÃO":"SEM LIMITES 18+")+" · "+card.c.toUpperCase();
+ $("cardText").textContent=card.t;
+ $("cardNumber").textContent="ENTRE NÓS · "+String(index+1).padStart(2,"0");
+ $("progress").textContent="CARTA "+String(index+1).padStart(2,"0")+" / "+String(d.length).padStart(2,"0");
+ $("rules").textContent=mode==="romance"?"Escutem sem interromper. Uma resposta sincera vale mais do que uma resposta perfeita.":"Desafios são convites, nunca obrigações. Ambos podem passar, adaptar ou parar a qualquer momento.";
+}
+function nextCard(){let d=currentDeck();if(!d.length)return;index=(index+1)%d.length;renderCard()}
+function skipCard(){nextCard();toast("Carta pulada. Escolham sempre o que for confortável.")}
+function shuffleDeck(){shuffleArray(deck);index=0;renderCard();toast("Cartas embaralhadas. ✦")}
+let toastTimer;
+function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("hidden");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.add("hidden"),2200)}
+$("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
